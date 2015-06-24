@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:composite="http://java.sun.com/jsf/composite"
+        xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/default.xhtml">
+
+	<ui:define name="content">
+		<h:form>
+		
+	<f:event type="postValidate" listener="#{patientBean.validatePeselDob}" />
+	
+        <p:growl showDetail="true"/>
+			<h:panelGrid>
+				<p:messages id="messages" showDetail="#{true}" showSummary="#{false}" />
+			</h:panelGrid>
+        
+        
+			<h:panelGrid columns="3" styleClass="className">
+                            
+                            
+				<p:outputLabel value="#{msg.patientFirstNameLabel}: " />
+				<p:inputText type="text" id="firstName" value="#{patientBean.patient.firstName}" required="#{true}" label="Imie" >
+					<f:validateLength minimum="2" maximum="50" />
+                                        <p:ajax update="msgFirstname" event="keyup" />
+                                       
+				</p:inputText>
+                                <p:message for="firstName" id="msgFirstname" display="icon" />
+
+                                
+                                
+				<p:outputLabel value="#{msg.patientLastNameLabel}: " />
+				<p:inputText type="text" id="lastName" value="#{patientBean.patient.lastName}" required="#{true}" label="Nazwisko">
+					<f:validateLength minimum="2" maximum="50" />
+                                        <p:ajax update="msgLastname" event="keyup" />
+				</p:inputText>
+                                <p:message for="lastName" id="msgLastname" display="icon" />
+
+                                
+                                
+				<p:outputLabel value="#{msg.patientPeselLabel}: " />
+				<p:inputText id="pesel" value="#{patientBean.patient.pesel}" validator="#{patientBean.uniquePesel}" required="#{true}" label="PESEL">
+					<f:validator validatorId="peselValidator" />
+                                        <p:ajax update="msgPesel" event="keyup" />
+				</p:inputText>
+                                <p:message for="pesel" id="msgPesel" display="icon" />
+
+                                
+                                
+				<p:outputLabel value="#{msg.patientDateOfBirthLabel}: " />
+				<p:inputText id="dateOfBirth"
+					value="#{patientBean.patient.dateOfBirth}" required="#{true}" label="Data urodzenia">
+					<f:convertDateTime type="date" pattern="dd.MM.yyyy" />
+					<f:validator validatorId="dateOfBirthValidator" />
+                                        <p:ajax update="msgDateOfBirth" event="keyup" />
+				</p:inputText>
+                                <p:message for="dateOfBirth" id="msgDateOfBirth" display="icon" />
+					
+                                
+                                
+                                
+				<p:outputLabel value="#{msg.patientAddressLabel}: " />
+				<p:inputText id="address"
+					value="#{patientBean.patient.address}" required="#{true}" label="Adres">
+                                        <p:ajax update="msgAddress" event="keyup" />
+                                </p:inputText>
+                                <p:message for="address" id="msgAddress" display="icon" />
+                                
+
+				<p:outputLabel value="#{msg.patientPhoneNumberLabel}: " />
+				<p:inputText id="phoneNumber" value="#{patientBean.patient.phoneNumber}" label="Numer telefonu">
+					<f:validator validatorId="phoneValidator" />
+                                        <p:ajax update="msgPhoneNumber" event="keyup" />
+                                </p:inputText>
+                                <p:message for="phoneNumber" id="msgPhoneNumber" display="icon" />
+
+				<p:outputLabel value="#{msg.patientWeightLabel}: " />
+				<p:inputText type="number" id="weight" value="#{patientBean.patient.weight}" >
+                                    <p:ajax update="msgWeight" event="keyup" />
+                                </p:inputText>
+                                <p:message for="weight" id="msgWeight" display="icon" />
+                                
+
+                                
+                                
+                                
+				<p:outputLabel value="#{msg.patientHeightLabel}: " />
+				<p:inputText type="number" id="height" value="#{patientBean.patient.height}" >
+                                    <p:ajax update="msgHeight" event="keyup" />
+                                </p:inputText>
+                                <p:message for="height" id="msgHeight" display="icon" />
+
+
+				<p:outputLabel value="" />
+				<p:commandButton type="submit" value="#{msg.patientFormOKButton}"
+					actionListener="#{patientBean.addPatient}" ajax="false"/>
+			</h:panelGrid>
+			
+
+			
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

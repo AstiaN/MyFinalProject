@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/default.xhtml">
+
+	<ui:define name="content">
+	   
+		<h:form>
+    
+	     <p:dataTable value="#{patientBean.patients}" var="item">
+	      <f:facet name="header">#{msg.patientAllLabel}</f:facet>
+	      
+              <p:column sortBy="#{item.entryDate}">
+	        <f:facet name="header">#{msg.patientEntryDateLabel}</f:facet>
+	        #{item.entryDate}
+	      </p:column>
+	      
+	      <p:column sortBy="#{item.firstName}">
+	        <f:facet name="header">#{msg.patientFirstNameLabel}</f:facet>
+	        #{item.firstName}
+	      </p:column>
+	      
+	      <p:column sortBy="#{item.lastName}">
+	        <f:facet name="header">#{msg.patientLastNameLabel}</f:facet>
+	        #{item.lastName}
+	      </p:column>
+	      
+	      <p:column sortBy="#{item.pesel}">
+	        <f:facet name="header">#{msg.patientPeselLabel}</f:facet>
+	        #{item.pesel}
+	      </p:column>
+	      
+	      <p:column sortBy="#{item.weight}">
+	        <f:facet name="header">#{msg.patientWeightLabel}</f:facet>
+	        #{item.weight}
+	      </p:column>
+	      
+	      <p:column sortBy="#{item.height}">
+	        <f:facet name="header">#{msg.patientHeightLabel}</f:facet>
+	        #{item.height}
+	      </p:column>
+	      
+	     </p:dataTable>
+	   </h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>

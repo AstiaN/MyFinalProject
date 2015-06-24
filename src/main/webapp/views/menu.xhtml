@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui">
+  <div>
+	<h:form>
+		
+            <p:toolbar>
+                <p:toolbarGroup>
+		  <p:commandButton class="button"  action="show?faces-redirect=true" value="#{msg.showAllLabel}" />
+		  
+		  <p:commandButton  class="button" action="add?faces-redirect=true" value="#{msg.patientAddLabel}" />
+		
+		  <p:commandButton  class="button" action="tools?faces-redirect=true" value="#{msg.toolsLabel}" />
+		
+             </p:toolbarGroup>
+                  </p:toolbar>
+   </h:form>
+  </div>
+</ui:composition>
