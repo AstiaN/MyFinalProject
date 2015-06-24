@@ -13,6 +13,7 @@ public class PatientManager implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private static List<Patient> db = new ArrayList<Patient>();
+
 	
 	public void addPatient(Patient patient) {
 		Patient newPatient = new Patient();
@@ -26,6 +27,8 @@ public class PatientManager implements Serializable {
 		newPatient.setWeight(patient.getWeight());
 		newPatient.setHeight(patient.getHeight());
 		db.add(newPatient);
+                
+                
 	}
 	
 	public List<Patient> getAllPatients() {

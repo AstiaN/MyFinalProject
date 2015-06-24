@@ -14,11 +14,13 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.model.ListDataModel;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
 
 import domain.Patient;
+import org.hibernate.Session;
 import service.PatientManager;
+import utils.HibernateUtil;
+import java.util.List;
 
 
 @SessionScoped
@@ -29,6 +31,9 @@ public class PatientBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Patient patient = new Patient();
 	private ListDataModel<Patient> patients = new ListDataModel<Patient>();
+        private HibernateUtil helper;
+        private Session session;
+
 	
 	@Inject
 	private PatientManager pm;
@@ -37,10 +42,19 @@ public class PatientBean implements Serializable {
 
 	public Patient getPatient() {
 		return patient;
+                
+                
+                
 	}
 
 	public void setPatient(Patient patient) {
 		this.patient = patient;
+                
+                session = helper.getSessionFactory().openSession();
+                session.beginTransaction();
+                session.save(pm);
+                session.getTransaction().commit();
+                session.close();
 	}
 	
 	public void setPatients(ListDataModel<Patient> patients) {
@@ -65,6 +79,8 @@ public class PatientBean implements Serializable {
 		patient.setHeight(0);
 		patient.setEntryDate(null);
 		
+                
+                
 		return "showAll";
 	}
 	
