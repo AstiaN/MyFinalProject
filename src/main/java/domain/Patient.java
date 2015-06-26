@@ -2,38 +2,51 @@ package domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQueries({
-	@NamedQuery(name = "patient.all", query = "Select p from Patient p")
-})
+@Table(name = "Patients")
+
 
 public class Patient implements Serializable  {
+    
+    private static final long serialVersionUID = -1798070786993154676L;
 	
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    @Column(name = "ID", unique = true, nullable = false)
         private Long id;
         
+    @Column(name = "firstName", unique = false, nullable = false)
 	private String firstName = "";
+    @Column(name = "lastName", unique = false, nullable = false)
 	private String lastName = "";
+    @Column(name = "pesel", unique = true, nullable = false)
 	private String pesel = "";
+    @Column(name = "dateOfBirth", unique = false, nullable = false)
+@Temporal(TemporalType.DATE)
 	private Date dateOfBirth = new Date();
+    @Column(name = "address", unique = false, nullable = false)
 	private String address = "";
+    @Column(name = "phoneNumber", unique = false, nullable = false)
 	private String phoneNumber = null;
+    @Column(name = "weight", unique = false, nullable = false)
 	private int weight;
+    @Column(name = "height", unique = false, nullable = false)
 	private int height;
+    @Column(name = "entryDate", unique = false, nullable = false)
 	private String entryDate = String.format("%tF", new Date());
  
 	public Patient() {}
         
-        @Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
         public Long getId() {
             return id;
         }
@@ -74,7 +87,6 @@ public class Patient implements Serializable  {
 		this.phoneNumber = phoneNumber;
 	}
         
-	@Temporal(TemporalType.DATE)
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
@@ -107,7 +119,6 @@ public class Patient implements Serializable  {
 		this.height = height;
 	}
 
-        @Temporal(TemporalType.DATE)
 	public String getEntryDate() {
 		return entryDate;
 	}

@@ -16,32 +16,32 @@
 	     <p:dataTable value="#{patientBean.patients}" var="item">
 	      <f:facet name="header">#{msg.patientAllLabel}</f:facet>
 	      
-              <p:column sortBy="#{item.entryDate}">
+              <p:column sortBy="#{item.entryDate}" filterBy="#{item.entryDate}" filterMatchMode="contains">
 	        <f:facet name="header">#{msg.patientEntryDateLabel}</f:facet>
 	        #{item.entryDate}
 	      </p:column>
 	      
-	      <p:column sortBy="#{item.firstName}">
+              <p:column sortBy="#{item.firstName}" filterBy="#{item.firstName}" filterMatchMode="contains">
 	        <f:facet name="header">#{msg.patientFirstNameLabel}</f:facet>
 	        #{item.firstName}
 	      </p:column>
 	      
-	      <p:column sortBy="#{item.lastName}">
+              <p:column sortBy="#{item.lastName}" filterBy="#{item.lastName}" filterMatchMode="contains">
 	        <f:facet name="header">#{msg.patientLastNameLabel}</f:facet>
 	        #{item.lastName}
 	      </p:column>
 	      
-	      <p:column sortBy="#{item.pesel}">
+              <p:column sortBy="#{item.pesel}" filterBy="#{item.pesel}" filterMatchMode="contains">
 	        <f:facet name="header">#{msg.patientPeselLabel}</f:facet>
 	        #{item.pesel}
 	      </p:column>
 	      
-	      <p:column sortBy="#{item.weight}">
+              <p:column sortBy="#{item.weight}" filterBy="#{item.weight}" filterMatchMode="contains">
 	        <f:facet name="header">#{msg.patientWeightLabel}</f:facet>
 	        #{item.weight}
 	      </p:column>
 	      
-	      <p:column sortBy="#{item.height}">
+              <p:column sortBy="#{item.height}" filterBy="#{item.height}" filterMatchMode="contains">
 	        <f:facet name="header">#{msg.patientHeightLabel}</f:facet>
 	        #{item.height}
 	      </p:column>

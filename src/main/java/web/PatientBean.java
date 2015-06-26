@@ -17,9 +17,9 @@ import javax.inject.Inject;
 import javax.faces.bean.ManagedBean;
 
 import domain.Patient;
+import java.sql.SQLException;
 import org.hibernate.Session;
 import service.PatientManager;
-import utils.HibernateUtil;
 import java.util.List;
 
 
@@ -31,8 +31,6 @@ public class PatientBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Patient patient = new Patient();
 	private ListDataModel<Patient> patients = new ListDataModel<Patient>();
-        private HibernateUtil helper;
-        private Session session;
 
 	
 	@Inject
@@ -50,11 +48,6 @@ public class PatientBean implements Serializable {
 	public void setPatient(Patient patient) {
 		this.patient = patient;
                 
-                session = helper.getSessionFactory().openSession();
-                session.beginTransaction();
-                session.save(pm);
-                session.getTransaction().commit();
-                session.close();
 	}
 	
 	public void setPatients(ListDataModel<Patient> patients) {
@@ -112,7 +105,7 @@ public class PatientBean implements Serializable {
 	// Validator unikalnosci peselu
 	
 	public void uniquePesel(FacesContext context, UIComponent component,
-			Object value){
+			Object value) {
 
 		String pesel = (String) value;
 		
